@@ -13,15 +13,15 @@ RAG-based Q&A bot for [gonzo_ML](https://t.me/gonzo_ML) Telegram channel with ML
 
 ## Architecture
 
-User Question
-↓
-Hybrid Search (BM25 + Pinecone vector, alpha=0.6)
-↓
-Reranker (BAAI/bge-reranker-v2-m3)
-↓
-Generator (gpt-4.1-mini)
-↓
-Answer + Source Links
+User Question  
+↓  
+Hybrid Search (BM25 + Pinecone vector, alpha=0.6)  
+↓  
+Reranker (BAAI/bge-reranker-v2-m3)  
+↓  
+Generator (gpt-4.1-mini)  
+↓  
+Answer + Source Links    
 
 ## Stack
 
