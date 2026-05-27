@@ -13,15 +13,17 @@ RAG-based Q&A bot for [gonzo_ML](https://t.me/gonzo_ML) Telegram channel with ML
 
 ## Architecture
 
+```
 User Question  
-↓  
+      ↓  
 Hybrid Search (BM25 + Pinecone vector, alpha=0.6)  
-↓  
+      ↓  
 Reranker (BAAI/bge-reranker-v2-m3)  
-↓  
+      ↓  
 Generator (gpt-4.1-mini)  
-↓  
-Answer + Source Links    
+      ↓  
+Answer + Source Links  
+```
 
 ## Stack
 
@@ -43,17 +45,22 @@ Answer + Source Links
 
 ## Project Structure
 
+```
 gonzo_rag/
-app.py              # FastAPI backend
-chat.py             # Streamlit frontend
-rag/
-bot.py            # RagBot class with conversation history
-retrieval.py      # Hybrid search: BM25 + Pinecone
-generation.py     # LLM wrapper + prompt template
-data/
-chunks_filtered.json
-notebooks/
-main.ipynb        # Research & evaluation notebook
+  app.py                    # FastAPI backend
+  chat.py                   # Streamlit frontend
+  rag/
+    bot.py                  # RagBot class with conversation history
+    retrieval.py            # Hybrid search: BM25 + Pinecone
+    generation.py           # LLM wrapper + prompt template
+    parser.py               # Telegram JSON parser
+  scripts/
+    parse_and_upload.py     # Parse + upload to Pinecone
+  data/
+    chunks_filtered.json    # Filtered chunks for BM25
+  notebooks/
+    main.ipynb              # Research & evaluation notebook
+```
 
 ## Setup
 
@@ -62,15 +69,22 @@ main.ipynb        # Research & evaluation notebook
 uv venv
 uv pip install -r requirements.txt
 
-# Add .env file
+# Create .env file
 PINECONE_API_KEY=your_key
 PROXY_API_KEY=your_key
 RERANKER_PATH=path/to/bge-reranker-v2-m3
+```
 
-# Start backend
+## Usage
+
+```bash
+# 1. Parse Telegram export and upload to Pinecone
+python scripts/parse_and_upload.py --input data/gonzo-ml-data.json
+
+# 2. Start backend
 uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
-# Start frontend
+# 3. Start frontend
 streamlit run chat.py
 ```
 
@@ -78,3 +92,4 @@ streamlit run chat.py
 
 Evaluated on 50 synthetic questions generated from 5% of chunks.
 LLM-as-judge using gpt-4.1-mini with 3 criteria: faithfulness, answer relevance, hallucination.
+Synthetic questions generated via GPT-4.1-mini with structured output (Pydantic).
