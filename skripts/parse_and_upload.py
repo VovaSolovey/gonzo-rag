@@ -78,7 +78,7 @@ def upload_chunks(chunks: list, index) -> int:
         vectors = prepare_batch(batch)
         try:
             result = index.upsert(vectors=vectors, namespace=NAMESPACE)
-            total += result.get('upserted_count', 0)
+            total += result.upserted_count
         except Exception as e:
             print(f'Error uploading batch {i}-{i+BATCH_SIZE}: {e}')
     return total
