@@ -33,7 +33,7 @@ with open('data/chunks_filtered.json', encoding='utf-8') as f:
 corpus = [chunk['text'].lower().split() for chunk in chunks_filtered]
 bm25 = BM25Okapi(corpus)
 
-print(f'Загружено {len(chunks_filtered)} чанков, BM25 готов')
+print(f'Loaded {len(chunks_filtered)} chunks, BM25 ready')
 
 # --- Helper functions ---
 def my_hash(text: str) -> str:
