@@ -6,7 +6,7 @@ RAG-based Q&A bot for [gonzo_ML](https://t.me/gonzo_ML) Telegram channel with ML
 
 | Metric | Score |
 |--------|-------|
-| Recall@3 | 85.7% |
+| Recall@3 | 87.5% |
 | Faithfulness | 9.8 / 10 |
 | Answer Relevance | 9.8 / 10 |
 | Hallucination | 9.9 / 10 |
@@ -87,8 +87,8 @@ Evaluated on 245 synthetic questions generated from 5% of chunks (seed=42).
 
 | Pipeline | Recall@3 | Recall@10 |
 |----------|----------|-----------|
-| Vector only | 0.714 | 0.799 |
-| Hybrid | 0.741 | 0.873 |
-| **Hybrid + Reranker** | **0.857** | **0.884** |
+| Vector only | 0.742 | 0.817 |
+| Hybrid | 0.758 | 0.871 |
+| **Hybrid + Reranker** | **0.875** | **0.888** |
 
 LLM-as-judge (gpt-4.1-mini): faithfulness, answer relevance, hallucination.
